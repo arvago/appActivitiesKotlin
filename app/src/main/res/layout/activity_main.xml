@@ -6,13 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/ivPicture"
+        android:layout_width="278dp"
+        android:layout_height="442dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnInfo"
+        app:layout_constraintEnd_toStartOf="@+id/btnNext"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="" />
+
+    <Button
+        android:id="@+id/btnInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/text_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toEndOf="@+id/ivPicture"
+        tools:layout_editor_absoluteY="514dp" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="33dp"
+        android:layout_height="67dp"
+        android:background="@drawable/flecha_izq"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPicture"
+        app:layout_constraintTop_toTopOf="@+id/ivPicture"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="33dp"
+        android:layout_height="67dp"
+        android:background="@drawable/flecha_der"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPicture"
+        app:layout_constraintTop_toTopOf="@+id/ivPicture"
+        tools:layout_editor_absoluteX="362dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
