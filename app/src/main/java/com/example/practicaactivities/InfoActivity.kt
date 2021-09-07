@@ -3,6 +3,7 @@ package com.example.practicaactivities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.BoringLayout
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -17,6 +18,7 @@ class InfoActivity : AppCompatActivity() {
     private lateinit var txvInfo: TextView
     private lateinit var ivFavorite: ImageView
     private lateinit var picture: Picture
+    private var favFlag: Boolean = false
 
     private fun setView(){
         picture = intent.getParcelableExtra("selectedImage") ?: Picture()
@@ -26,6 +28,11 @@ class InfoActivity : AppCompatActivity() {
 
         ivPictureInfo.setImageResource(picture.source)
         txvInfo.text = picture.title + ": " + picture.description
+        if(picture.favorite == false){
+            ivFavorite.setImageResource(R.drawable.estrella)
+        }else{
+            ivFavorite.setImageResource(R.drawable.estrella_rellena)
+        }
 
         ivPictureInfo.setOnClickListener{
             showImage()
@@ -42,12 +49,25 @@ class InfoActivity : AppCompatActivity() {
     }
 
     private fun addToFavorites(){
-        if(picture.favorite == false){
+        if(picture.favorite == false && !favFlag){
             ivFavorite.setImageResource(R.drawable.estrella_rellena)
-            picture.favorite = true
+            favFlag = true
+
+            Picture.pictures.forEach {
+                when(it.id) {
+                    picture.id -> it.favorite = true
+                }
+            }
+
         }else{
             ivFavorite.setImageResource(R.drawable.estrella)
-            picture.favorite = false
+            favFlag = false
+
+            Picture.pictures.forEach {
+                when(it.id) {
+                    picture.id -> it.favorite = false
+                }
+            }
         }
     }
 
