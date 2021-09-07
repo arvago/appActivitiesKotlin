@@ -18,9 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnBack: Button
     private lateinit var btnNext: Button
     private lateinit var btnInfo: Button
-    private lateinit var tvFav: TextView
     private var contadorCarousel = 0
-    private var contadorNoFavs = 0
     private var contLimit = Picture.pictures.size
 
     private fun initView(){
@@ -28,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         btnBack = findViewById(R.id.btnBack)
         btnNext = findViewById(R.id.btnNext)
         btnInfo = findViewById(R.id.btnInfo)
-        tvFav = findViewById(R.id.tvFav)
 
         btnBack.setOnClickListener{
             lastImage()
