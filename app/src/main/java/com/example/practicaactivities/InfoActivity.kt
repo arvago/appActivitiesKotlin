@@ -58,7 +58,6 @@ class InfoActivity : AppCompatActivity() {
                     picture.id -> it.favorite = true
                 }
             }
-
         }else{
             ivFavorite.setImageResource(R.drawable.estrella)
             favFlag = false
@@ -70,5 +69,4 @@ class InfoActivity : AppCompatActivity() {
             }
         }
     }
-
 }
