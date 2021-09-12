@@ -6,50 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/ivPicture"
-        android:layout_width="278dp"
-        android:layout_height="442dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="" />
-
-    <Button
-        android:id="@+id/btnInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/text_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPicture" />
-
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="33dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="192dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="183dp"
-        android:background="@drawable/flecha_izq"
-        app:layout_constraintBottom_toBottomOf="@+id/ivPicture"
-        app:layout_constraintEnd_toStartOf="@+id/ivPicture"
-        app:layout_constraintTop_toTopOf="@+id/ivPicture" />
-
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="33dp"
-        android:layout_height="67dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="192dp"
-        android:layout_marginBottom="183dp"
-        android:background="@drawable/flecha_der"
-        app:layout_constraintBottom_toBottomOf="@+id/ivPicture"
-        app:layout_constraintStart_toEndOf="@+id/ivPicture"
-        app:layout_constraintTop_toTopOf="@+id/ivPicture" />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
