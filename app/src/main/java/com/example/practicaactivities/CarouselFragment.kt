@@ -26,7 +26,7 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
     private var contadorCarousel = 0
     private var contLimit = Picture.pictures.size
 
-    private fun getFavIm(): Picture {
+    private fun getChanges(): Picture {
         return (requireActivity() as MainActivity).preferences.getString( (requireActivity() as MainActivity).PIC_PREFERENCES, null)?.let {
             return@let try {
                 (requireActivity() as MainActivity).moshi.adapter(Picture::class.java).fromJson(it)
@@ -37,7 +37,7 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
 
     }
 
-    private fun getFavSound() : Picture {
+    /*private fun getFavSound() : Picture {
         return (requireActivity() as MainActivity).preferences.getString( (requireActivity() as MainActivity).SOUND_PREFERENCES, null)?.let {
             return@let try {
                 (requireActivity() as MainActivity).moshi.adapter(Picture::class.java).fromJson(it)
@@ -45,7 +45,7 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
                 Picture()
             }
         } ?: Picture()
-    }
+    }*/
 
     private fun initView(){
         ivPicture = requireView().findViewById(R.id.ivPicture)
@@ -64,14 +64,14 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
             infoImage()
         }
         btnSound.setOnClickListener{
-           MediaPlayer.create(context, getFavSound().sound).start()
+           //MediaPlayer.create(context, getFavSound().sound).start()
             Toast.makeText(context, "Sonido Favorito", LENGTH_SHORT).show()
         }
 
         Picture.pictures.forEach {
-            if(it.id == getFavIm().id){
-                it.favorite = getFavIm().favorite
-                it.favSound = getFavSound().favSound
+            if(it.id == getChanges().id){
+                it.favorite = getChanges().favorite
+                //it.favSound = getChanges().favSound
             }
         }
 

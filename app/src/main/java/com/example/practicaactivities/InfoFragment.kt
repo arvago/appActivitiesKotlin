@@ -92,7 +92,7 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
             picture.pictures.forEach {
                 if(it.id == pictures[index].id){
                     it.favorite = false
-                    pictures[index].favorite = true
+                    pictures[index].favorite = false
                 }
             }
         }
@@ -125,7 +125,7 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
                 }
             }
         }
-        (requireActivity() as MainActivity).preferences.edit().putString((requireActivity() as MainActivity).SOUND_PREFERENCES, (requireActivity() as MainActivity).moshi.adapter(Picture::class.java).toJson(picture.pictures[index])).commit()
+        //(requireActivity() as MainActivity).preferences.edit().putString((requireActivity() as MainActivity).PIC_PREFERENCES, (requireActivity() as MainActivity).moshi.adapter(Picture::class.java).toJson(picture.pictures[index])).commit()
     }
 
     private fun playSound(sound: Int) = MediaPlayer.create(context, sound).start()
