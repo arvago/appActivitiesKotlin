@@ -1,8 +1,10 @@
 package com.example.practicaactivities
 
 import android.os.Parcelable
+import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
 
+@JsonClass(generateAdapter = true)
 @Parcelize
 class Picture(
     var id: Int? = null,

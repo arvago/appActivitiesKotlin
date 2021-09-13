@@ -22,6 +22,17 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
     private var contadorCarousel = 0
     private var contLimit = Picture.pictures.size
 
+    private fun getChanges(): Picture {
+        return (requireActivity() as MainActivity).preferences.getString( (requireActivity() as MainActivity).PIC_PREFERENCES, null)?.let {
+            return@let try {
+                (requireActivity() as MainActivity).moshi.adapter(Picture::class.java).fromJson(it)
+            } catch (e: Exception) {
+                Picture()
+            }
+        } ?: Picture()
+
+    }
+
     private fun initView(){
         ivPicture = requireView().findViewById(R.id.ivPicture)
         btnBack = requireView().findViewById(R.id.btnBack)
@@ -38,6 +49,14 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
             infoImage()
         }
 
+        Picture.pictures.forEach {
+            if(it.id == getChanges().id){
+                it.favorite = getChanges().favorite
+                it.favSound = getChanges().favSound
+            }
+        }
+
+        getChanges()
         ivPicture.setImageResource(Picture.pictures[contadorCarousel].source)
     }
 
@@ -64,7 +83,9 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
     private fun infoImage(){
         (requireActivity() as MainActivity).replaceFragment(InfoFragment().apply {
             arguments = Bundle().apply {
-                putParcelable("selectedImage", Picture.pictures[contadorCarousel])
+                //putParcelable("selectedImage", Picture.pictures[contadorCarousel])
+                putParcelableArray("ImagesArray", Picture.pictures)
+                putInt("selectedImage", contadorCarousel)
             }
         })
     }

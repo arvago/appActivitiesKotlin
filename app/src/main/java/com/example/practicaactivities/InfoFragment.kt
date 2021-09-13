@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-
 class InfoFragment : Fragment(R.layout.fragment_info) {
     override fun onResume() {
         super.onResume()
@@ -20,24 +19,37 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
     private lateinit var ivPictureInfo: ImageView
     private lateinit var txvInfo: TextView
     private lateinit var ivFavorite: ImageView
-    private lateinit var picture: Picture
+    private lateinit var ivFavoriteSound: ImageView
+    private var picture = Picture
+    private lateinit var pictures: Array<Picture>
+    var index = 0
     private var favFlag: Boolean = false
+    private var favSoundFlag: Boolean = false
 
     private fun setView(){
-        picture = requireArguments().getParcelable("selectedImage") ?: Picture()
+        pictures = requireArguments().getParcelableArray("ImagesArray") as Array<Picture>
+        index = requireArguments().getInt("selectedImage")
         ivPictureInfo = requireView().findViewById(R.id.ivPictureInfo)
         txvInfo = requireView().findViewById(R.id.txvInfo)
         ivFavorite = requireView().findViewById(R.id.ivFavorite)
+        ivFavoriteSound = requireView().findViewById(R.id.ivFavoriteSound)
 
-        ivPictureInfo.setImageResource(picture.source)
-        txvInfo.text = picture.title + ": " + picture.description
-        if(picture.favorite == false){
+        ivPictureInfo.setImageResource(pictures[index].source)
+        txvInfo.text = pictures[index].title + ": " + pictures[index].description
+
+        if(pictures[index].favorite == false){
             ivFavorite.setImageResource(R.drawable.estrella)
         }else{
             ivFavorite.setImageResource(R.drawable.estrella_rellena)
         }
 
-        playSound(picture.sound)
+        if(pictures[index].favSound == false){
+            ivFavoriteSound.setImageResource(R.drawable.corazon)
+        }else{
+            ivFavoriteSound.setImageResource(R.drawable.corazon_relleno)
+        }
+
+        playSound(pictures[index].sound)
 
         ivPictureInfo.setOnClickListener{
             showImage()
@@ -45,36 +57,67 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
         ivFavorite.setOnClickListener {
             addToFavorites()
         }
+        ivFavoriteSound.setOnClickListener {
+            addToFavSound()
+        }
     }
 
     private fun showImage(){
         (requireActivity() as MainActivity).replaceFragment(ImageFragment().apply {
             arguments = Bundle().apply {
-                putParcelable("imageSource", picture)
+                putParcelable("imageSource", pictures[index])
             }
         })
     }
 
     private fun addToFavorites(){
-        if(picture.favorite == false && !favFlag){
+        if(pictures[index].favorite == false && !favFlag){
             ivFavorite.setImageResource(R.drawable.estrella_rellena)
             favFlag = true
 
+            pictures[index].favorite = true
             Picture.pictures.forEach {
                 when(it.id) {
-                    picture.id -> it.favorite = true
+                    pictures[index].id -> it.favorite = true
                 }
             }
         }else{
             ivFavorite.setImageResource(R.drawable.estrella)
             favFlag = false
 
+            pictures[index].favorite = false
             Picture.pictures.forEach {
                 when(it.id) {
-                    picture.id -> it.favorite = false
+                    pictures[index].id -> it.favorite = false
                 }
             }
         }
+        (requireActivity() as MainActivity).preferences.edit().putString((requireActivity() as MainActivity).PIC_PREFERENCES, (requireActivity() as MainActivity).moshi.adapter(Picture::class.java).toJson(picture.pictures[index])).commit()
+    }
+
+    private fun addToFavSound(){
+        if(pictures[index].favSound == false && !favSoundFlag){
+            ivFavoriteSound.setImageResource(R.drawable.corazon_relleno)
+            favSoundFlag = true
+            picture.pictures.forEach {
+                if(it.id == pictures[index].id){
+                    it.favSound = true
+                    pictures[index].favSound = true
+                }
+            }
+        }else{
+            ivFavoriteSound.setImageResource(R.drawable.corazon)
+            favSoundFlag = false
+
+            picture.pictures[index].favSound = false
+            picture.pictures.forEach {
+                if(it.id == pictures[index].id){
+                    it.favSound= false
+                    pictures[index].favSound = false
+                }
+            }
+        }
+        (requireActivity() as MainActivity).preferences.edit().putString((requireActivity() as MainActivity).PIC_PREFERENCES, (requireActivity() as MainActivity).moshi.adapter(Picture::class.java).toJson(picture.pictures[index])).commit()
     }
 
     private fun playSound(sound: Int) = MediaPlayer.create(context, sound).start()
