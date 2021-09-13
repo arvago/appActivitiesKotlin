@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_corazon_relleno" />
-                            <entry key="sourceFile" value="D:\Downloads\corazon_relleno.svg" />
+                            <entry key="outputName" value="ic_sonido" />
+                            <entry key="sourceFile" value="D:\Downloads\sonido.svg" />
                           </map>
                         </option>
                       </PersistentState>

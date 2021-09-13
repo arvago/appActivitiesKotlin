@@ -19,7 +19,7 @@
         android:id="@+id/txvInfo"
         android:layout_width="279dp"
         android:layout_height="88dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivPictureInfo" />
@@ -28,12 +28,27 @@
         android:id="@+id/ivFavorite"
         android:layout_width="77dp"
         android:layout_height="81dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.262"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvInfo"
         app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@drawable/estrella" />
+
+    <ImageView
+        android:id="@+id/ivFavSound"
+        android:layout_width="77dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.797"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvInfo"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@drawable/corazon" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

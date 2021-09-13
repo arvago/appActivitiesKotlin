@@ -17,15 +17,25 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="" />
 
+    <ImageView
+        android:id="@+id/btnSound"
+        android:layout_width="33dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/sonido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivPicture" />
+
     <Button
         android:id="@+id/btnInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:text="@string/text_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPicture" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSound" />
 
     <Button
         android:id="@+id/btnBack"

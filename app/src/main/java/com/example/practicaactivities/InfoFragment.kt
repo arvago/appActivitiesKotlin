@@ -1,6 +1,7 @@
 package com.example.practicaactivities
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,6 +36,8 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
         }else{
             ivFavorite.setImageResource(R.drawable.estrella_rellena)
         }
+
+        playSound(picture.sound)
 
         ivPictureInfo.setOnClickListener{
             showImage()
@@ -73,4 +76,7 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
             }
         }
     }
+
+    private fun playSound(sound: Int) = MediaPlayer.create(context, sound).start()
+
 }
