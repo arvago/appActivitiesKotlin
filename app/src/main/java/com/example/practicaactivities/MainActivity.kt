@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     val moshi = Moshi.Builder().build()
     val PREFS = "MY_PREFERENCES"
     val PIC_PREFERENCES = "PIC_PREFERENCES"
+    val SOUND_PREFERENCES = "PIC_PREFERENCES"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
